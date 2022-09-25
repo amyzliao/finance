@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <h1>My stock portfolio</h1>
+    <table>
+		<thead>
+			<tr>
+				<th>Symbol</th>
+				<th>Current Price</th>
+                <th>Shares</th>
+                <th>Total value</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for stock in portfolio %}
+				<tr>
+					<td>{{ stock["symbol"] }}</td>
+					<td>{{ stock["price"] | usd }}</td>
+                    <td>{{ stock["shares"] }}</td>
+                    <td>{{ stock["totalval"] | usd }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+    <h4>Total stock value: {{ totalstock | usd }}</h4>
+    <h4>Total cash remaining: {{ balance | usd }}</h4>
+    <h4>Total asset value (stocks + cash): {{ totalasset | usd }}</h4>
+
+	<p></p>
+	<form action="/modcash" method="get">
+		<button class="btn btn-primary" type="submit">Add or remove cash</button>
+	</form>
+
+{% endblock %}

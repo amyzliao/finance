@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sale complete
+{% endblock %}
+
+{% block main %}
+    <form action="/sell" method="post">
+        <div class="mb-3">
+            <select name="symbol">
+                <option disable selected>Choose stock</option>
+                {% for stock in stocklist %}
+                    <option>{{ stock }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" name="shares" placeholder="Number of shares" type="number">
+        </div>
+        <button class="btn btn-primary" type="submit">Sell</button>
+    </form>
+
+    <p></p>
+    <div>
+        Sale successful!<br>
+        Stock: {{ symbol }}, {{ stockname }}<br>
+        Price: {{ price | usd }}<br>
+        Shares sold: {{ shares }}<br>
+        Total revenue: {{ total | usd }}<br>
+        New cash balance: {{ new_balance | usd }}<br>
+        Sold by {{ username }} on {{ month }}/{{ day }}/{{ year }}
+    </div>
+{% endblock %}

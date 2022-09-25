@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Purchase complete
+{% endblock %}
+
+{% block main %}
+    <form action="/buy" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="symbol" placeholder="Stock symbol" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" name="shares" placeholder="Number of shares" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Buy</button>
+    </form>
+    <p></p>
+    <div>
+        Purchase successful!<br>
+        Stock: {{ symbol }}, {{ stockname }}<br>
+        Price: {{ price | usd }}<br>
+        Shares bought: {{ shares }}<br>
+        Total cost: -{{ total | usd }}<br>
+        New cash balance: {{ new_balance | usd }}<br>
+        Purchased by {{ username }} on {{ month }}/{{ day }}/{{ year }}
+    </div>
+{% endblock %}

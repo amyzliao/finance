@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Modify cash balance
+{% endblock %}
+
+{% block main %}
+
+    <h1>Add or remove cash</h1>
+    <h4>Total cash remaining: {{ new_balance | usd }}</h4>
+    <p></p>
+    <form action="/modcash" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="amount" placeholder="Amount" type="number" step=".01">
+        </div>
+        <button class="btn btn-primary" name="add" type="submit" value="add">Add to my account</button>
+        <button class="btn btn-primary" name="remove" type="submit" value="remove">Remove from my account</button>
+    </form>
+
+    <p></p>
+    <div>
+        Cash {{ mod }}!<br>
+        Amount {{ mod }}: {{ amount | usd }}<br>
+        New cash balance: {{ new_balance | usd }}<br>
+        {{ mod }} by {{ username }} on {{ month }}/{{ day }}/{{ year }}
+    </div>
+
+{% endblock %}

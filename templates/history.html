@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <h1>Transaction history</h1>
+    <table>
+		<thead>
+			<tr>
+				<th>Transaction type</th>
+				<th>Date</th>
+                <th>Stock</th>
+                <th>Price</th>
+                <th>Shares</th>
+                <th>Total</th>
+                <th>New cash balance</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in transactions %}
+				<tr>
+					<td>{{ item["type"] }}</td>
+					<td>{{ item["month"] }}/{{ item["day"] }}/{{ item["year"] }}</td>
+                    <td>{{ item["symbol"] }}</td>
+                    <td>{{ item["price"] | usd }}</td>
+                    <td>{{ item["plus"] }}{{ item["shares"] }}</td>
+                    <td>{{ item["prefix"] }}{{ item["totalval"] | usd }}</td>
+                    <td>{{ item["newbalance"] | usd }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
